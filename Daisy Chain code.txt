@@ -1,0 +1,57 @@
+/* Once receive or transmitted a letter number, then will signal
+ *  the LED lights to execute its function:light up, then 
+ *  afterwards decrement in seconds and goes down the chain of 
+ *  boards. 
+ *  I made this fairly simplified code with the synthesis of other code found online
+ *  and this is for the sake of experimentation of whether or not the cascade/echoing 
+ *  effect would work(and hopefully should), on all boards
+ *  Let me know what can be improved.....
+ */
+
+
+const int ledPin = 8; 
+void setup() {
+  // initialize or start up the serial:
+  Serial.begin(9600);
+ 
+  // make the pins outputs:
+  pinMode(ledPin, OUTPUT);
+  digitalWrite( ledPin, LOW );
+}
+void blinkFor( long ms )  //controls how long the LED will light up for/blink
+{
+  digitalWrite( ledPin, HIGH );
+  delay( ms );
+  digitalWrite( ledPin, LOW );
+}
+void loop()
+{
+  int ch, digit;
+  long d = 0;
+ 
+  // wait for something to come read
+  if( Serial.available() == 0 ) return;
+  // read in a character. 
+  // If it's within '1' .. '9', set the timer for that number of seconds.
+  ch = Serial.read();
+  if( ch >='0' && ch <= '9' ) {
+    digit = ch - '0';
+   
+    if( digit > 0 ) {
+      d = digit * 1000;
+    }
+  }
+ 
+  if( ch == 'b' ) {
+    // turn off for 1/4 second, send down echo immediately down Daisy Chain
+    Serial.write( 'b' );
+    blinkFor( 250 ); //this is for how long light is transmitted for 
+  }
+ 
+  if( d > 0 ) {
+    // turn on the LED for the specified number of seconds
+    blinkFor( d );
+    // cascade out the digit, which is one less than the previous boards up the chain
+    Serial.write( (digit - 1) + '0' );
+  }
+}
