@@ -323,8 +323,14 @@ void loop()
       if(input == 'c')
       {
         toggle = true;
-        p = 4;
+        p = 3;
         port.write('d');
+        delay(250);
+      }
+      if(input == 'd')
+      {
+        toggle = true;
+        p = 4;
         delay(250);
       }
     }
@@ -346,15 +352,15 @@ void loop()
       int maxSize = sizeof(part2);
       playNote(2, part2, duration, maxSize);
     }
-//    else if(p == 3)
-//    {
-      //port.write('c');
-//      int duration = 42;
-//      int maxSize = sizeof(part3);
-//      if (k == 6 || k == 7) duration = 21;
+    else if(p == 3)
+    {
+      port.write('d');
+      int duration = 42;
+      int maxSize = sizeof(part3);
+      if (k == 6 || k == 7) duration = 21;
 //      playNote(2, part3, duration, maxSize);
-//      k++;
-//    }
+      k++;
+    }
     else if(p == 4)
     {
       int duration = 42;
@@ -362,7 +368,7 @@ void loop()
       else if (i == 104 || i == 106) duration = 125; // 3 counts
       else if (i == 110 || i == 196 || i == 199 || i == 204 || 207) duration = 167; // 4 counts
       int maxSize = sizeof(part4);
-      playNote(2, part4, duration, maxSize);
+//      playNote(2, part4, duration, maxSize);
     }
   }
 }
