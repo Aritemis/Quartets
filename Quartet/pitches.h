@@ -65,6 +65,7 @@
 #define NOTE_AS5 932
 #define NOTE_B5  988
 #define NOTE_C6  1047
+#define NOTE_BS5 1050
 #define NOTE_CS6 1109
 #define NOTE_D6  1175
 #define NOTE_DS6 1245

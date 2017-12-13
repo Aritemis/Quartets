@@ -6,60 +6,10 @@
 SoftwareSerial port(9, 10);
 boolean toggle = false;
 int p = 0;
-
-void setup() 
-{
-  CircuitPlayground.begin();
-  Serial.begin(9600);
-  port.begin(9600);
-}
-
-void loop() 
-{
-  if(CircuitPlayground.rightButton()) 
-  {
-    if (toggle) toggle = false;
-    else toggle = true;
-    p = 1;
-    port.write('b');
-    delay(250);
-  }
-
-  if(p == 0)
-  {
-    port.listen();
-    if(port.peek() == -1)
-    {
-      return;
-    }
-    else
-    {
-      char input = port.read();
-      if(input == 'b')
-      {
-        toggle = true;
-        p = 2;
-        //port.write('c');
-        delay(250);
-      }
-    }
-  }
-  
-  if (toggle) 
-  {
-    delay(250);
-    if(p == 1)
-    {
-      port.write('b');
-      partOne();
-    }
-    if(p == 2)
-    {
-      port.write('c');
-      partTwo();
-    }
-  }
-}
+int i = 0;
+int j = 0;
+int colorCounter = 0;
+int k = 0;
 
 int part1[] = {
   0, NOTE_F4, 0, NOTE_F4, 0, NOTE_F4, 0, NOTE_F4,
@@ -206,7 +156,7 @@ int part2dur[] = {
 
 int part3[] = {
   NOTE_AS3, NOTE_C4, NOTE_CS4, NOTE_AS3, NOTE_C4, NOTE_CS4, 
-  NOTE_AS3, NOTE_C4, // dur 1/16 @ 6 & 7
+  NOTE_AS3, NOTE_C4, // dur 1/16 
   NOTE_CS4, // measure 1 (8)
   NOTE_AS3, NOTE_C4, NOTE_CS4, NOTE_AS3, NOTE_C4, NOTE_CS4, 
   NOTE_AS3, NOTE_C4, // dur 1/16 @ 15 & 16
@@ -335,83 +285,103 @@ int part4[] = {
   NOTE_C4 //2 counts @209
 };
 
-int i = 0;
-int colorCounter = 0;
-int k = 0;
-
-void partOne() {
-  int duration = 42; //1000 / noteDuration;
-  CircuitPlayground.playTone(part1[i], duration);
-  
-  if (i < sizeof(part1)) i++;
-  else toggle = false;
-
-  CircuitPlayground.setPixelColor(random(0,9), random(0,255), random(0,255), random(0,255));
-  if (colorCounter < 10) colorCounter++;
-  else colorCounter = 0;
-  
-  // to distinguish the notes, set a minimum time between them.
-  delay(100);
-  CircuitPlayground.setPixelColor(colorCounter-1, 0, 0, 0);
+void setup() 
+{
+  CircuitPlayground.begin();
+  Serial.begin(9600);
+  port.begin(9600);
 }
 
-void partTwo() {
-  int duration = part2dur[i];
-  CircuitPlayground.playTone(part2[i], duration);
-  
-  if (i < sizeof(part2)) i++;
-  else toggle = false;
-
-  CircuitPlayground.setPixelColor(random(0,9), random(0,255), random(0,255), random(0,255));
-  if (colorCounter < 10) colorCounter++;
-  else colorCounter = 0;
-  
-  // to distinguish the notes, set a minimum time between them.
-  delay(100);
-  CircuitPlayground.setPixelColor(colorCounter-1, 0, 0, 0);
-}
-
-void partThree() {
-  int duration = 42;
-  if (k == 6 || k == 7) duration = 21;
-  else duration = 42;
-  
-  CircuitPlayground.playTone(part3[i], duration);
-  
-  if (i < sizeof(part3)) {
-    i++;
-    if (k < 8) k++;
-    else k = 0;
+void loop() 
+{
+  if(CircuitPlayground.rightButton()) 
+  {
+    if (toggle) toggle = false;
+    else toggle = true;
+    p = 1;
+    port.write('b');
+    delay(250);
   }
-  else toggle = false;
 
-  CircuitPlayground.setPixelColor(random(0,9), random(0,255), random(0,255), random(0,255));
-  if (colorCounter < 10) colorCounter++;
-  else colorCounter = 0;
+  if(p == 0)
+  {
+    port.listen();
+    if(port.peek() == -1)
+    {
+    
+    }
+    else
+    {
+      char input = port.read();
+      if(input == 'b')
+      {
+        toggle = true;
+        p = 2;
+        port.write('c');
+        delay(250);
+      }
+      if(input == 'c')
+      {
+        toggle = true;
+        p = 4;
+        port.write('d');
+        delay(250);
+      }
+    }
+  }
   
-  // to distinguish the notes, set a minimum time between them.
-  delay(100);
-  CircuitPlayground.setPixelColor(colorCounter-1, 0, 0, 0);
+  if (toggle) 
+  {
+    delay(250);
+    if(p == 1)
+    {
+      port.write('b');
+      int maxSize = sizeof(part1);
+      playNote(2, part1, 42, maxSize);
+    }
+    else if(p == 2)
+    {
+      port.write('c');
+      int duration = part2dur[i];
+      int maxSize = sizeof(part2);
+      playNote(2, part2, duration, maxSize);
+    }
+//    else if(p == 3)
+//    {
+      //port.write('c');
+//      int duration = 42;
+//      int maxSize = sizeof(part3);
+//      if (k == 6 || k == 7) duration = 21;
+//      playNote(2, part3, duration, maxSize);
+//      k++;
+//    }
+    else if(p == 4)
+    {
+      int duration = 42;
+      if (i == 195 || i == 208 || i == 209) duration = 83; // 2 counts
+      else if (i == 104 || i == 106) duration = 125; // 3 counts
+      else if (i == 110 || i == 196 || i == 199 || i == 204 || 207) duration = 167; // 4 counts
+      int maxSize = sizeof(part4);
+      playNote(2, part4, duration, maxSize);
+    }
+  }
 }
 
-void partFour() {
-  int duration = 42;
-  if (i == 195 || i == 208 || i == 209) duration = 83; // 2 counts
-  else if (i == 104 || i == 106) duration = 125; // 3 counts
-  else if (i == 110 || i == 196 || i == 199 || i == 204 || 207) duration = 167; // 4 counts
-  else duration = 42; // 1 count
-
-  CircuitPlayground.playTone(part4[i], duration);
-  
-  if (i < sizeof(part4)) i++;
-  else toggle = false;
-
+void playNote(int mod, int current[], int noteDuration, int maxSize) 
+{
+  noteDuration *= mod;
+  CircuitPlayground.playTone(current[i], noteDuration);
+  if (i < maxSize) i++;
+  else
+  {
+    toggle = false;
+    i = 0;
+    p = 5;
+  }
   CircuitPlayground.setPixelColor(random(0,9), random(0,255), random(0,255), random(0,255));
-  if (colorCounter < 10) colorCounter++;
-  else colorCounter = 0;
-
-  // to distinguish the notes, set a minimum time between them.
+  if (j < 10) j++;
+  else j = 0;
   delay(100);
-  CircuitPlayground.setPixelColor(colorCounter-1, 0, 0, 0);
+  CircuitPlayground.setPixelColor(j-1, 0, 0, 0);
 }
 
