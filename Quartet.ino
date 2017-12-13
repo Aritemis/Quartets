@@ -357,9 +357,13 @@ void loop()
       port.write('d');
       int duration = 42;
       int maxSize = sizeof(part3);
-      if (k == 6 || k == 7) duration = 21;
+      if(k == 6 || k == 7) duration = 21;
 //      playNote(2, part3, duration, maxSize);
       k++;
+      if(k > 8)
+      {
+        k = 0;
+      }
     }
     else if(p == 4)
     {
