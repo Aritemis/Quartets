@@ -288,6 +288,12 @@ int part4[] =
   NOTE_C4 //2 counts 
 };
 
+int mod = 2;
+int maxSize = 0;
+int duration = 0;
+int current = part1;
+char next = 'n';
+
 void playNote(int mod, int current[], int noteDuration, int maxSize) 
 {
   noteDuration *= mod;
@@ -317,11 +323,12 @@ void loop()
 {
   if(CircuitPlayground.rightButton()) 
   {
-    if (toggle) toggle = false;
-    else toggle = true;
+    if(p < 5) toggle = true;
     p = 1;
-    port.write('b');
-    delay(250);
+    next = 'b';
+    duration = 42;
+    maxSize = sizeof(part1);
+    delay(5);
   }
 
   if(p == 0)
@@ -336,64 +343,48 @@ void loop()
       char input = port.read();
       if(input == 'b')
       {
-        toggle = true;
+        if(p < 5) toggle = true;
         p = 2;
-        port.write('c');
-        delay(250);
+        next = 'c';
+//        duration = part2dur[i];
+//        maxSize = sizeof(part2);
+//        current = part2;
+        delay(2);
       }
       if(input == 'c')
       {
-        toggle = true;
+        if(p < 5) toggle = true;
         p = 3;
-        port.write('d');
-        delay(250);
+        next = 'd';
+//        duration = 42;
+//        if(k == 6 || k == 7) duration = 21;
+//        maxSize = sizeof(part3);
+//        current = part3;
+        delay(1);
       }
       if(input == 'd')
       {
-        toggle = true;
+        if(p < 5) toggle = true;
         p = 4;
-        delay(250);
+        duration = 42;
+        if (i == 195 || i == 208 || i == 209) duration = 83; // 2 counts
+        else if (i == 104 || i == 106) duration = 125; // 3 counts
+        else if (i == 110 || i == 196 || i == 199 || i == 204 || 207) duration = 167; // 4 counts
+        maxSize = sizeof(part4);
+        current = part4;
       }
     }
   }
   
   if (toggle) 
   {
-    delay(250);
-    if(p == 1)
+    delay(70);
+    port.write(next);
+    playNote(mod, current, duration, maxSize);
+    k++;
+    if(k > 8)
     {
-      port.write('b');
-      int duration = 42;
-      if (i == 195 || i == 208 || i == 209) duration = 83; // 2 counts
-      else if (i == 104 || i == 106) duration = 125; // 3 counts
-      else if (i == 110 || i == 196 || i == 199 || i == 204 || 207) duration = 167; // 4 counts
-      int maxSize = sizeof(part4);
-//      playNote(2, part4, duration, maxSize);
-    }
-    else if(p == 2)
-    {
-      port.write('c');
-      int duration = part2dur[i];
-      int maxSize = sizeof(part2);
-      playNote(2, part2, duration, maxSize);
-    }
-    else if(p == 3)
-    {
-      port.write('d');
-      int maxSize = sizeof(part1);
-      playNote(2, part1, 42, maxSize);
-    }
-    else if(p == 4)
-    {
-      int duration = 42;
-      int maxSize = sizeof(part3);
-      if(k == 6 || k == 7) duration = 21;
-//      playNote(2, part3, duration, maxSize);
-      k++;
-      if(k > 8)
-      {
-        k = 0;
-      }
+      k = 0;
     }
   }
 }
