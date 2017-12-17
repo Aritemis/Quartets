@@ -12,286 +12,221 @@ int k = 0;
 
 int part1[] = 
 {
-  0, NOTE_F4, 0, NOTE_F4, 0, NOTE_F4, 0, NOTE_F4,
-  0, NOTE_F4, 0, NOTE_F4, 0, NOTE_F4, 0, NOTE_F4, //measure 2
-  0, NOTE_DS4, 0, NOTE_DS4, 0, NOTE_DS4, 0, NOTE_DS4,
-  0, NOTE_DS4, 0, NOTE_DS4, 0, NOTE_DS4, 0, NOTE_DS4, //measure 4
-  0, NOTE_F4, 0, NOTE_F4, 0, NOTE_F4, 0, NOTE_F4,
-  0, NOTE_F4, 0, NOTE_F4, 0, NOTE_F4, 0, NOTE_F4, //measure 6
-  0, NOTE_DS4, 0, NOTE_DS4, 0, NOTE_DS4, 0, NOTE_DS4,
-  0, NOTE_DS4, 0, NOTE_DS4, 0, NOTE_DS4, 0, NOTE_DS4, //measure 8
-  0, NOTE_F4, 0, NOTE_F4, 0, NOTE_F4, 0, NOTE_F4,
-  0, NOTE_F4, 0, NOTE_F4, 0, NOTE_F4, 0, NOTE_F4, //measure 10
-  0, NOTE_DS4, 0, NOTE_DS4, 0, NOTE_DS4, 0, NOTE_DS4,
-  0, NOTE_DS4, 0, NOTE_DS4, 0, NOTE_DS4, 0, NOTE_DS4, //measure 12
-  0, NOTE_F4, 0, NOTE_F4, 0, NOTE_F4, 0, NOTE_F4,
-  0, NOTE_F4, 0, NOTE_F4, 0, NOTE_F4, 0, NOTE_F4, //measure 14
-  0, NOTE_DS4, 0, NOTE_DS4, 0, NOTE_DS4, 0, NOTE_DS4,
-  0, NOTE_DS4, 0, NOTE_DS4, 0, NOTE_DS4, 0, NOTE_DS4, //measure 16
-  0, NOTE_F4, 0, NOTE_F4, 0, NOTE_F4, 0, NOTE_F4,
-  0, NOTE_F4, 0, NOTE_F4, 0, NOTE_F4, 0, NOTE_F4, //measure 18
-  0, NOTE_DS4, 0, NOTE_DS4, 0, NOTE_DS4, 0, NOTE_DS4,
-  0, NOTE_DS4, 0, NOTE_DS4, 0, NOTE_DS4, 0, NOTE_DS4, //measure 20
-  0, NOTE_DS4, 0, NOTE_DS4, 0, NOTE_DS4, 0, NOTE_DS4,
-  0, NOTE_DS4, 0, NOTE_DS4, 0, NOTE_DS4, 0, NOTE_DS4, //measure 22
-  0, NOTE_DS4, 0, NOTE_DS4, 0, NOTE_DS4, 0, NOTE_DS4, //measure 23
-  0, NOTE_F4, 0, NOTE_F4, 0, NOTE_F4, 0, NOTE_F4, //measure 24
-  0, NOTE_DS4, 0, NOTE_DS4, 0, NOTE_DS4, 0, NOTE_DS4,
-  0, NOTE_AS4, 0, NOTE_AS4, 0, NOTE_AS4, 0, NOTE_AS4, //measure 26
-  0, NOTE_BS4, 0, NOTE_BS4, 0, NOTE_BS4, 0, NOTE_BS4,
-  0, NOTE_F4, 0, NOTE_F4, 0, NOTE_F4, 0, NOTE_F4,
-  0, NOTE_DS4, 0, NOTE_DS4, 0, NOTE_DS4, 0, NOTE_DS4
+NOTE_A5, NOTE_AS5, 0, NOTE_C6, NOTE_AS5, NOTE_A5, NOTE_D6, NOTE_C6,
+NOTE_AS5, 0, NOTE_A5, NOTE_AS5, NOTE_C6, 0, NOTE_D6, NOTE_C6,
+0, NOTE_AS5, NOTE_C6, 0, NOTE_AS5, NOTE_C6, NOTE_D6, NOTE_C6,
+NOTE_AS5, NOTE_AS5, NOTE_C6, NOTE_AS5, NOTE_A5, NOTE_AS5, NOTE_C6, NOTE_DS6,
+NOTE_D6, NOTE_C6, NOTE_D6, NOTE_C6, NOTE_AS5, NOTE_C6, 0, NOTE_D6, 
+NOTE_C6, NOTE_AS5, NOTE_C6, NOTE_C6, NOTE_AS5, NOTE_A5, NOTE_AS5, 0,
+0, NOTE_AS5, NOTE_C6, NOTE_D6, NOTE_C6, NOTE_AS5, NOTE_C6, 0, 
+NOTE_D6, NOTE_DS6, NOTE_DS6, NOTE_D6, NOTE_C6, NOTE_AS5, NOTE_C6, NOTE_C6, 
+NOTE_AS5, NOTE_A5, NOTE_AS5, NOTE_A5, NOTE_AS5, NOTE_C6, NOTE_AS5, NOTE_A5, 
+NOTE_D6, NOTE_C6, NOTE_AS5, NOTE_A5, NOTE_AS5, NOTE_C6, NOTE_D6, NOTE_C6, 
+NOTE_C6, 0, NOTE_AS5, NOTE_C6, 0, NOTE_AS5, NOTE_C6, NOTE_D6,
+NOTE_C6, NOTE_AS5, NOTE_AS5, NOTE_AS5, NOTE_C6, NOTE_C6, NOTE_A5, NOTE_A5,
+NOTE_C6, NOTE_DS6, NOTE_D6, NOTE_D6, NOTE_C6, NOTE_D6, NOTE_C6, NOTE_AS5, 
+NOTE_A5, NOTE_AS5, NOTE_C6, 0, 0, NOTE_D6, NOTE_C6, NOTE_C6,
+NOTE_AS5, NOTE_C6, NOTE_AS5, NOTE_A5, NOTE_AS5, NOTE_F6, NOTE_DS6, NOTE_D6, 
+NOTE_C6, NOTE_AS6, NOTE_C6, NOTE_D6, NOTE_D6, NOTE_C6, 0, NOTE_D6, 
+NOTE_DS6, NOTE_DS6, NOTE_D6, NOTE_C6, NOTE_D6, NOTE_C6, NOTE_AS5, NOTE_AS5,
+NOTE_C6, NOTE_D6, NOTE_C6, NOTE_AS5, NOTE_C6, NOTE_D6, NOTE_DS6, NOTE_DS6,
+NOTE_D6, NOTE_C6, NOTE_AS5, NOTE_C6, NOTE_C6, 0, NOTE_AS5, NOTE_A5,
+NOTE_AS5, NOTE_C6, NOTE_D6, NOTE_C6, NOTE_AS5, NOTE_C6, NOTE_AS5, NOTE_A5,
+NOTE_AS5, NOTE_AS5, NOTE_C6, 0, NOTE_DS6, NOTE_DS6, NOTE_D6, NOTE_C6, 
+NOTE_AS5, NOTE_C6, NOTE_D6
+};
+
+int soloDur[] = {
+100, 50, 50, 100, 50, 50, 50, 100,
+50, 50, 100, 50, 50, 100, 100, 100,
+100, 100, 100, 100, 50, 50, 100, 50,
+100, 100, 50, 50, 50, 50, 100, 100,
+50, 50, 100, 100, 100, 200, 100, 50, 
+50, 50, 50, 100, 100, 100, 100, 100,
+100, 100, 100, 100, 50, 50, 50, 50, 
+50, 50, 100, 100, 100, 50, 50, 200, 
+100, 100, 200, 100, 100, 100, 50, 50, 
+50, 50, 100, 100, 50, 50, 50, 50,
+100, 100, 100, 100, 100, 50, 50, 100,
+50, 50, 50, 200, 50, 50, 50, 100,
+100, 50, 50, 50, 50, 100, 100, 50, 
+50, 50, 50, 100, 100, 50, 50, 100,
+50, 50, 100, 100, 100, 100, 50, 50, 
+50, 50, 50, 50, 100, 100, 100, 50, 
+50, 100, 100, 100, 100, 100, 100, 100,
+100, 100, 50, 50, 50, 50, 100, 100,
+100, 100, 50, 50, 100, 100, 100, 100,
+100, 100, 100, 50, 50, 50, 50, 50,
+100, 50, 50, 100, 100, 200, 200, 100, 
+100, 200, 400
 };
 
 int part2[] = 
 {
-  0, 0, 0, 0, 0, 0, 0, 0, // measure 1
-  NOTE_AS4, NOTE_AS5, NOTE_AS4, NOTE_AS5, // dur 1/16
-  0, 0, 0, 0, 0, 0, // measure 2
-  0, 0, 0, 0, 0, 0, 0, 0, // measure 3
-  0, 0, 0, 0, 0, 0, 0, 0, // measure 4
-  0, 0, 0, 0, 
-  NOTE_AS4, NOTE_AS5, NOTE_AS4, NOTE_AS5, // dur 1/16
-  0, 0, // measure 5
-  0, NOTE_AS4, NOTE_CS5, NOTE_AS4, NOTE_F5, NOTE_AS4, NOTE_CS5, NOTE_DS5, 
-  0, NOTE_AS4, NOTE_CS5, NOTE_AS4, NOTE_F5, NOTE_AS4, NOTE_DS5, NOTE_B4, 
-  0, NOTE_A4, NOTE_C4, NOTE_GS4, NOTE_DS5, NOTE_GS4, NOTE_C5, NOTE_CS5, // measure 9
-  0, NOTE_AS4, NOTE_CS5, NOTE_AS4, NOTE_F5, NOTE_AS4, NOTE_CS5, NOTE_DS5, 
-  0, NOTE_AS4, NOTE_CS5, NOTE_AS4, NOTE_F5, NOTE_AS4, NOTE_C5, NOTE_CS5, 
-  0, NOTE_GS5, NOTE_DS5, NOTE_CS5, NOTE_DS5, NOTE_CS5, NOTE_C5, NOTE_CS5, 
-  0, NOTE_DS5, NOTE_CS5, NOTE_C5, NOTE_CS5, NOTE_C5, NOTE_AS4, NOTE_A4, // measure 13
-  NOTE_AS6, // 3 counts
-  NOTE_B5, 
-  NOTE_G5, // 3 counts
-  NOTE_G5, // measure 14
-  NOTE_GS5, 
-  NOTE_A6, // 4 counts
-  0, NOTE_C5, NOTE_AS4, // measure 15
-  NOTE_CS5, // 3 counts
-  NOTE_C5, 
-  NOTE_AS4, // 3 counts
-  NOTE_CS5, // measure 16
-  NOTE_C5, // 4 counts
-  0, 0, 0, NOTE_DS5, // measure 17
-  NOTE_CS5, // 3 counts
-  NOTE_C5, NOTE_AS4, NOTE_C5, NOTE_CS5, // dur 1/16
-  NOTE_CS5, NOTE_DS5, 0, // measure 18
-  NOTE_F5, 
-  NOTE_DS5, // 3 counts
-  NOTE_CS5, // 2 counts
-  NOTE_CS5, NOTE_C5, NOTE_CS5, NOTE_C5, // dur 1/16 measure 19
-  NOTE_CS5, // 3 counts
-  NOTE_C5, NOTE_AS4, // 2 counts
-  NOTE_AS4, NOTE_A4, NOTE_GS4, // measure 20
-  // {NOTE_AS4, NOTE_A4, NOTE_GS4} SPECIAL duration of 1/8 divided by 3
-  // I modified the last 3 notes 
-  // by instead using each at 1/8 in part because 1/16 notes sound awful
-  // and there's like, no point to making one even shorter; also timing?
-  NOTE_G4, // 3 counts
-  NOTE_A4, // 4 counts
-  NOTE_AS4,
-  // measure 21
-  NOTE_C5, // 3 counts
-  NOTE_CS5, 
-  NOTE_C5, // 3 counts
-  NOTE_CS5, 
-  // measure 22
-  NOTE_F5, NOTE_DS5, // 2 counts
-  NOTE_DS5, // 3 counts
-  NOTE_DS5, NOTE_F5, // dur 1/16 measure 23
-  NOTE_FS5, // 2 counts
-  NOTE_F5,
-  NOTE_DS5, // 2 counts
-  NOTE_CS5, NOTE_DS5, // dur 1/16 measure 24
-  NOTE_C5, // 4 counts
-  0, 0, 0, 
-  NOTE_DS5, NOTE_F5, // dur 1/16 measure 25
-  NOTE_FS5, // 3 counts
-  NOTE_DS5, 
-  NOTE_FS5, // 3 counts
-  NOTE_A6, // measure 26
-  NOTE_GS5, // 2 counts
-  NOTE_FS5, // 4 counts
-  0, 
-  NOTE_FS5, NOTE_GS5, // dur 1/16 measure 27
-  NOTE_FS2, // 2 counts
-  NOTE_F5, // 2 counts
-  NOTE_DS5, // 3 counts
-  NOTE_F5, NOTE_DS5, // dur 1/16 measure 28
-  NOTE_C5, // 2 counts
-  NOTE_A4, // 2 counts
-  0, 0, 0, 0 // added 4 rests to complete measure 29
-  };
+0, NOTE_D5, 0, NOTE_D5, 0, NOTE_D5, 0, NOTE_D5, // measure 1
+0, 0, NOTE_DS5, 0, NOTE_DS5, 0, NOTE_DS5, 0, // measure 2
+NOTE_DS5, 0, NOTE_D5, 0, NOTE_D5, 0, NOTE_D5, 0, // measure 3
+NOTE_D5, 0, NOTE_DS5, 0, NOTE_DS5, 0, NOTE_DS5, 0, // measure 4
+NOTE_DS5, 0, NOTE_D5, 0, NOTE_D5, 0, 0, 0, // measure 5
+NOTE_D5, 0, NOTE_D5, 0, NOTE_D5, // only 5 counts, incomplete?
+0, // 3 counts
+// this last rest was reduced from 4 counts to add to measure 6
+0, 0, 0, 0, 0, 0, 0, 0, // x1 8-count rest made into x8 1-count rests
+// ==== Sweetly
+NOTE_F5, NOTE_F5, NOTE_F5, NOTE_F5, NOTE_D5, NOTE_D5, NOTE_D5, NOTE_D5, // measure 8
+NOTE_DS5, NOTE_DS5, NOTE_DS5, NOTE_DS5, NOTE_C4, NOTE_C4, NOTE_C4, NOTE_C4, // measure 9
+NOTE_D5, NOTE_D5, NOTE_D5, NOTE_D5, NOTE_C4, NOTE_C4, NOTE_C4, NOTE_C4, // measure 10
+NOTE_AS4, NOTE_DS5, // - 1/8
+NOTE_G5,
+NOTE_DS5, NOTE_AS4, // - 1/8
+NOTE_G5, NOTE_F5, 0, 0, 0, // measure 11
+0, // - 4 counts
+0, // - 2 counts
+NOTE_G5, NOTE_F5, // - 1/8
+NOTE_F5, // measure 12
+NOTE_DS5, NOTE_F5, // - 1/8
+NOTE_DS5, NOTE_D5, NOTE_DS5, NOTE_AS5,
+NOTE_A5, NOTE_G5, NOTE_F5, NOTE_DS5, NOTE_F5, NOTE_G5, // x6 @ 1/8 - measure 13
+NOTE_G5, NOTE_F5, 0,
+NOTE_G5, NOTE_A5, // - 1/8
+NOTE_A5, NOTE_G5, NOTE_F5, NOTE_G5, // measure 14
+NOTE_F5, NOTE_DS5, NOTE_DS5, NOTE_F5, NOTE_F5, 0, 0, 0, // measure 15
+NOTE_D5, NOTE_C4, NOTE_D5, NOTE_DS5, // x4 @ 1/8
+NOTE_F5, NOTE_C6, NOTE_D6, NOTE_C6, NOTE_AS5, NOTE_F5, // measure 16
+NOTE_F5, NOTE_G5, NOTE_G5, NOTE_AS5,
+NOTE_G5, NOTE_F5, // 2 counts - measure 17
+NOTE_F5, NOTE_DS5, // 2 counts
+NOTE_D5, // 4 counts - measure 18
+};
 
-int part2dur[] = 
-{
-  42, 42, 42, 42, 42, 42, 42, 42, // measure 1
-  21, 21, 21, 21, 42, 42, 42, 42, 42, 42, // measure 2
-  42, 42, 42, 42, 42, 42, 42, 42, // measure 3
-  42, 42, 42, 42, 42, 42, 42, 42, // measure 4
-  42, 42, 42, 42, 21, 21, 21, 21, 42, 42, // measure 5
-  42, 42, 42, 42, 42, 42, 42, 42, 
-  42, 42, 42, 42, 42, 42, 42, 42, 
-  42, 42, 42, 42, 42, 42, 42, 42, // "measure 9"
-  42, 42, 42, 42, 42, 42, 42, 42, 
-  42, 42, 42, 42, 42, 42, 42, 42, 
-  42, 42, 42, 42, 42, 42, 42, 42, 
-  42, 42, 42, 42, 42, 42, 42, 42, // "measure 13"
-  125, 42, 125, 42, // measure 14
-  42, 167, 42, 42, 42, // measure 15
-  125, 42, 125, 42, // measure 16
-  167, 42, 42, 42, 42, // measure 17
-  125, 21, 21, 21, 21, 42, 42, 42, // measure 18
-  42, 125, 83, 21, 21, 21, 21, 
-  125, 83, 83, 14, 14, 14, // measures 20
-  125, 167, 42, // measure 21
-  125, 42, 125, 42, // measure 22
-  83, 83, 125, 21, 21, // measure 23
-  83, 42, 83, 21, 21, // measure 24
-  167, 42, 42, 42, 21, 21, // measure 25
-  125, 42, 125, 42, // measure 26
-  83, 167, 42, 21, 21, // measure 27
-  83, 83, 125, 21, 21, // measure 28
-  83, 83, 42, 42, 42, 42 // measure 29
-  };
+int altoDur[] = {
+100, 100, 100, 100, 100, 100, 100, 100,
+100, 100, 100, 100, 100, 100, 100, 100, 
+100, 100, 100, 100, 100, 100, 100, 100, 
+100, 100, 100, 100, 100, 100, 100, 100, 
+100, 100, 100, 100, 100, 100, 100, 100, 
+100, 100, 100, 100, 100,
+400,
+100, 100, 100, 100, 100, 100, 100, 100,
+// ==== Sweetly
+100, 100, 100, 100, 100, 100, 100, 100,
+100, 100, 100, 100, 100, 100, 100, 100,
+100, 100, 100, 100, 100, 100, 100, 100,
+50, 50, 100, 50, 50, 100, 100, 100, 100, 100, 
+400, 200, 100, 100, 
+100, 100, 100, 100, 100, 100, 100, 50, 50,
+50, 50, 50, 50, 100, 100, 100, 50, 50, 100, 100,
+100, 100, 100, 100, 100, 100, 100, 100, 
+100, 100, 50, 50, 50, 50, 100, 100, 100, 100,
+100, 100, 100, 100, 100, 100, 200,
+200, 200, 200,
+400
+};
 
 int part3[] = 
 {
-  NOTE_AS3, NOTE_C4, NOTE_CS4, NOTE_AS3, NOTE_C4, NOTE_CS4, 
-  NOTE_AS3, NOTE_C4, // 
-  NOTE_CS4, // measure 1 (8)
-  NOTE_AS3, NOTE_C4, NOTE_CS4, NOTE_AS3, NOTE_C4, NOTE_CS4, 
-  NOTE_AS3, NOTE_C4, // 
-  NOTE_CS4, // measure 2 (17)
-  NOTE_A3, NOTE_AS3, NOTE_C4, NOTE_A3, NOTE_AS3, NOTE_C4, 
-  NOTE_GS3, NOTE_AS3, // 
-  NOTE_C4, // measure 3 (26)
-  NOTE_A3, NOTE_AS3, NOTE_C4, NOTE_A3, NOTE_AS3, NOTE_C4, 
-  NOTE_GS3, NOTE_AS3, // 
-  NOTE_C4, // measure 4 (35)
-  NOTE_AS3, NOTE_C4, NOTE_CS4, NOTE_AS3, NOTE_C4, NOTE_CS4, 
-  NOTE_AS3, NOTE_C4, // 
-  NOTE_CS4, 
-  NOTE_AS3, NOTE_C4, NOTE_CS4, NOTE_AS3, NOTE_C4, NOTE_CS4, 
-  NOTE_AS3, NOTE_C4, // dur 1/16
-  NOTE_CS4, 
-  NOTE_A3, NOTE_AS3, NOTE_C4, NOTE_A3, NOTE_AS3, NOTE_C4, 
-  NOTE_GS3, NOTE_AS3, // dur 1/16
-  NOTE_C4, 
-  NOTE_A3, NOTE_AS3, NOTE_C4, NOTE_A3, NOTE_AS3, NOTE_C4, 
-  NOTE_GS3, NOTE_AS3, // dur 1/16
-  NOTE_C4, 
-  NOTE_AS3, NOTE_C4, NOTE_CS4, NOTE_AS3, NOTE_C4, NOTE_CS4, 
-  NOTE_AS3, NOTE_C4, // dur 1/16
-  NOTE_CS4, 
-  NOTE_AS3, NOTE_C4, NOTE_CS4, NOTE_AS3, NOTE_C4, NOTE_CS4, 
-  NOTE_AS3, NOTE_C4, // dur 1/16
-  NOTE_CS4, 
-  NOTE_A3, NOTE_AS3, NOTE_C4, NOTE_A3, NOTE_AS3, NOTE_C4, 
-  NOTE_GS3, NOTE_AS3, // dur 1/16
-  NOTE_C4, 
-  NOTE_A3, NOTE_AS3, NOTE_C4, NOTE_A3, NOTE_AS3, NOTE_C4, 
-  NOTE_GS3, NOTE_AS3, // dur 1/16
-  NOTE_C4, 
-  NOTE_AS3, NOTE_C4, NOTE_CS4, NOTE_AS3, NOTE_C4, NOTE_CS4, 
-  NOTE_AS3, NOTE_C4, // dur 1/16
-  NOTE_CS4, 
-  NOTE_AS3, NOTE_C4, NOTE_CS4, NOTE_AS3, NOTE_C4, NOTE_CS4, 
-  NOTE_AS3, NOTE_C4, // dur 1/16
-  NOTE_CS4, 
-  NOTE_A3, NOTE_AS3, NOTE_C4, NOTE_A3, NOTE_AS3, NOTE_C4, 
-  NOTE_GS3, NOTE_AS3, // dur 1/16
-  NOTE_C4, 
-  NOTE_A3, NOTE_AS3, NOTE_C4, NOTE_A3, NOTE_AS3, NOTE_C4, 
-  NOTE_GS3, NOTE_AS3, // dur 1/16
-  NOTE_C4, 
-  NOTE_AS3, NOTE_C4, NOTE_CS4, NOTE_AS3, NOTE_C4, NOTE_CS4, 
-  NOTE_AS3, NOTE_C4, // dur 1/16
-  NOTE_CS4, 
-  NOTE_AS3, NOTE_C4, NOTE_CS4, NOTE_AS3, NOTE_C4, NOTE_CS4, 
-  NOTE_AS3, NOTE_C4, // dur 1/16
-  NOTE_CS4, 
-  NOTE_A3, NOTE_AS3, NOTE_C4, NOTE_A3, NOTE_AS3, NOTE_C4, 
-  NOTE_GS3, NOTE_AS3, // dur 1/16
-  NOTE_C4, 
-  NOTE_A3, NOTE_AS3, NOTE_C4, NOTE_A3, NOTE_AS3, NOTE_C4, 
-  NOTE_GS3, NOTE_AS3, // dur1/16
-  NOTE_C4, 
-  NOTE_G3, NOTE_A3, NOTE_AS3, NOTE_G3, NOTE_A3, NOTE_AS3, 
-  NOTE_FS3, NOTE_GS3, // dur 1/16
-  NOTE_AS3, 
-  NOTE_A3, NOTE_AS3, NOTE_C4, NOTE_A3, NOTE_AS3, NOTE_C4, 
-  NOTE_GS3, NOTE_AS3, // dur 1/16
-  NOTE_C4, 
-  NOTE_AS3, NOTE_C4, NOTE_CS4, NOTE_AS3, NOTE_C4, NOTE_CS4, 
-  NOTE_AS3, NOTE_C4, // dur 1/16
-  NOTE_CS4, 
-  NOTE_A3, NOTE_AS3, NOTE_C4, NOTE_A3, NOTE_AS3, NOTE_C4, 
-  NOTE_GS3, NOTE_AS3, // dur 1/16
-  NOTE_C4, 
-  NOTE_DS3, NOTE_F4, NOTE_AS4, NOTE_DS3, NOTE_F4, NOTE_FS4, 
-  NOTE_DS3, NOTE_F4, // dur 1/16
-  NOTE_AS4, 
-  NOTE_CS4, NOTE_DS3, NOTE_F4, NOTE_CS4, NOTE_DS3, NOTE_F4, 
-  NOTE_CS4, NOTE_DS3, // dur 1/16
-  NOTE_F4, 
-  NOTE_C4, NOTE_CS4, NOTE_DS3, NOTE_C4, NOTE_CS4, NOTE_DS3, 
-  NOTE_C4, NOTE_CS4, // dur 1/16
-  NOTE_DS3, 
-  NOTE_A3, NOTE_AS3, NOTE_C4, NOTE_A3, NOTE_AS3, NOTE_C4, 
-  NOTE_GS3, NOTE_AS3, // dur 1/16
-  NOTE_C4
-  };
+0, NOTE_AS5, 0, NOTE_AS5, 0, NOTE_AS5, 0, NOTE_AS5,
+0, 0, NOTE_G5, 0, NOTE_G5, 0, NOTE_G5, 0,
+NOTE_FS5, 0, NOTE_F5, 0, NOTE_F5, 0, NOTE_F5, 0,
+NOTE_F5, 0, NOTE_G5, 0, NOTE_G5, 0, NOTE_G5, 0,
+NOTE_G5, 0, NOTE_F5, 0, NOTE_F5, 0, 0, 0,
+NOTE_F5, 0, NOTE_F5, 0, NOTE_F5, 0, 0, 0,
+0, 0, NOTE_D5, NOTE_DS5, NOTE_F5, NOTE_F5, NOTE_DS5, NOTE_D5,
+NOTE_F5, NOTE_F5, NOTE_F5, NOTE_F5, NOTE_D5, NOTE_A5, NOTE_AS5, NOTE_AS5,
+NOTE_G5, NOTE_F5, NOTE_E5, NOTE_F5, NOTE_G5, NOTE_A5, NOTE_AS5, NOTE_AS5,
+NOTE_F5, NOTE_G5, NOTE_G5, NOTE_DS6, NOTE_C6, NOTE_AS5, NOTE_G5, NOTE_C6,
+0, 0, 0, NOTE_F6, NOTE_G6, NOTE_A6, NOTE_F6, 0,
+NOTE_G5, NOTE_F6, NOTE_DS6, NOTE_G5, NOTE_AS5, NOTE_A5, NOTE_AS5
+};
+
+int sopranoDur[] = {
+100, 100, 100, 100, 100, 100, 100, 100, 
+100, 100, 100, 100, 100, 100, 100, 100, 
+100, 100, 100, 100, 100, 100, 100, 100, 
+100, 100, 100, 100, 100, 100, 100, 100, 
+100, 100, 100, 100, 100, 100, 100, 100, 
+100, 100, 100, 100, 100, 100, 100, 100, 
+100, 
+100, 100, 100, 100, 100, 100, 100, 100, 
+100, 100, 100, 100, 100, 100, 100, 100, 
+100, 100, 100, 100, 100, 100, 100, 100, 
+100, 100, 100, 100, 100, 100, 100, 100, 
+100, 100, 100, 100, 
+// 36 for some reason, not sure why it isn't a multiple of 8?
+50, 50, 100, 50, 50, 100, 200, 100,
+100, 100, 100, 100, 100, 200, 200, 200,
+200, 50, 50, 50, 50, 100, 100, 100,
+100, 50, 50, 50, 50, 100, 100, 100,
+100, 300, 50, 200, 100, 100, 100, 100,
+100, 100, 400, 400, 400
+};
 
 int part4[] = 
 {
+  NOTE_AS4, 0, NOTE_AS4, 0, NOTE_AS4, 0, NOTE_AS4, 0,
+  0, NOTE_AS4, 0, NOTE_AS4, 0, NOTE_AS4, 0, NOTE_AS4,
+  0, NOTE_AS4, 0, NOTE_AS4, 0, NOTE_AS4, 0, NOTE_AS4,
+  0, NOTE_C5, 0, NOTE_C5, 0, NOTE_C5, 0, NOTE_C5,
+  0, NOTE_C5, 0, NOTE_C5, 0, NOTE_AS4, 0, NOTE_AS4,
+  0, 0, 0, NOTE_AS4, 0, NOTE_AS4, 0, NOTE_AS4,
+  0,
+  0, 0, 0, 0, 
   0, 0, 0, 0, 0, 0, 0, 0, 
-  0, 0, 0, 0, 0, 0, 0, 0, // measure 2
-  0, 0, 0, 0, 0, 0, 0, 0, 
-  0, 0, 0, 0, 0, 0, 0, 0, // measure 4
-  0, 0, 0, 0, 0, 0, 0, 0, 
-  0, 0, 0, 0, 0, 0, 0, 0, // measure 6
-  0, 0, 0, 0, 0, 0, 0, 0, 
-  0, 0, 0, 0, 0, 0, 0, 0, // measure 8
-  0, 0, 0, 0, 0, 0, 0, 0, 
-  0, 0, 0, 0, 0, 0, NOTE_G4, NOTE_FS4, // measure 10
-  0, 0, 0, 0, 0, 0, NOTE_FS4, NOTE_F4, 
-  0, 0, 0, 0, 0, 0, NOTE_F4, NOTE_FS4, // measure 12
-  0, NOTE_DS4, NOTE_F4, NOTE_FS4, NOTE_F4, NOTE_FS4, NOTE_FS4, NOTE_F4, 
-  NOTE_AS4, //3 counts 
-  NOTE_BS4,
-  NOTE_G4, //3 counts 
-  NOTE_G4, // measure 14
-  NOTE_GS4, NOTE_A4, NOTE_A4, //4 counts 
-  0, 0, // measure 15 (112)
-  0, 0, 0, 0, 0, 0, 0, 0, // measure 16 (120)
-  0, 0, 0, 0, 0, 0, 0, 0, 
-  0, 0, 0, 0, 0, 0, 0, 0, // measure 18 (136)
-  0, 0, 0, 0, 0, 0, 0, 0, 
-  0, 0, 0, 0, 0, 0, 0, 0, // measure 20 (152)
-  0, 0, 0, 0, 0, 0, 0, 0, 
-  0, 0, 0, 0, 0, 0, 0, 0, // measure 22 (168)
-  0, 0, 0, 0, 0, 0, 0, 0, 
-  0, 0, 0, 0, 0, 0, 0, 0, // measure 24 (184)
-  0, 0, 0, 0, 0, 0, 0, 0, // measure 25 (192)
-  0, 0, 
-  NOTE_AS4, //2 counts
-  NOTE_AS4, //4 counts 
-  0, 0, 
-  NOTE_FS4, //4 counts 
-  0, 0, 
-  0, 0, 
-  NOTE_FS4, //4 counts 
-  0, 0, 
-  NOTE_F4, //4 counts 
-  NOTE_DS4, //2 counts 
-  NOTE_C4 //2 counts 
+  // == == Sweetly
+  NOTE_AS4, NOTE_A4, NOTE_G4, NOTE_G4, //200
+  NOTE_DS4, NOTE_DS4, NOTE_F4, NOTE_A4, //200
+  NOTE_AS4, NOTE_AS4, NOTE_A4, NOTE_F4, //200
+  NOTE_DS4, NOTE_DS4, NOTE_DS4, NOTE_F4, //200
+  // == == Section B
+  NOTE_F4, //400,
+  NOTE_C5, NOTE_D5, //200
+  NOTE_AS4, //400,
+  NOTE_G4, NOTE_AS4, //200,
+  NOTE_D5, NOTE_C5, NOTE_AS4, NOTE_A4, //50
+  NOTE_G4, NOTE_AS4,
+  NOTE_F5, NOTE_DS5, //50
+  NOTE_DS5, 0, NOTE_F4, NOTE_AS4, NOTE_AS4, NOTE_G4, NOTE_AS4, NOTE_F4, 
+  0, 0, 0,
+  NOTE_AS4, //200
+  NOTE_C5,
+  NOTE_AS4, NOTE_A4, NOTE_AS4, NOTE_C5, //50
+  NOTE_D5, //200
+  NOTE_AS4, NOTE_A4, //50
+  NOTE_AS4, NOTE_C5, //200
+  NOTE_C5, NOTE_AS4, NOTE_A4, NOTE_AS4,
+  NOTE_C5, NOTE_F4, //200
+  NOTE_F4 //400
+};
+
+int tenorDur[] = {
+100, 100, 100, 100, 100, 100, 100, 100, 
+100, 100, 100, 100, 100, 100, 100, 100, 
+100, 100, 100, 100, 100, 100, 100, 100, 
+100, 100, 100, 100, 100, 100, 100, 100, 
+100, 100, 100, 100, 100, 100, 100, 100, 
+100, 100, 100, 100, 100, 100, 100, 100, 
+100,
+100, 100, 100, 100, 
+100, 100, 100, 100, 100, 100, 100, 100, 
+  // == == Sweetly
+200, 200, 200, 200, 200, 200, 200, 200, 
+200, 200, 200, 200, 200, 200, 200, 200, 
+  // == == Section B
+400, 200, 200, 
+400, 200, 200,
+50, 50, 50, 50, 100, 100, 50, 50, 100, 
+100, 100, 100, 100, 100, 100, 100, 100, 
+100, 100, 100, 100, 100, 100, 100, 100, 
+100, 100, 200, 100, 50, 50, 50, 50, // is this measure only 7 counts?
+200, 50, 50, 200, 200, 100, 
+100, 100, 100, 200, 200, 
+400
 };
 
 int mod = 2;
 int maxSize = 0;
 int duration = 0;
-int current = part1;
+int current = part3;
 char next = 'n';
 
 void playNote(int mod, int current[], int noteDuration, int maxSize) 
@@ -326,9 +261,9 @@ void loop()
     if(p < 5) toggle = true;
     p = 1;
     next = 'b';
-    duration = 42;
+    duration = soloDur[i];
     maxSize = sizeof(part1);
-    delay(5);
+    delay(4);
   }
 
   if(p == 0)
@@ -346,9 +281,9 @@ void loop()
         if(p < 5) toggle = true;
         p = 2;
         next = 'c';
-//        duration = part2dur[i];
-//        maxSize = sizeof(part2);
-//        current = part2;
+        duration = altoDur[i];
+        maxSize = sizeof(part2);
+        current = part2;
         delay(2);
       }
       if(input == 'c')
@@ -356,22 +291,18 @@ void loop()
         if(p < 5) toggle = true;
         p = 3;
         next = 'd';
-//        duration = 42;
-//        if(k == 6 || k == 7) duration = 21;
-//        maxSize = sizeof(part3);
-//        current = part3;
+        duration = sopranoDur[i];
+        maxSize = sizeof(part3);
+        current = part3;
         delay(1);
       }
       if(input == 'd')
       {
         if(p < 5) toggle = true;
         p = 4;
-        duration = 42;
-        if (i == 195 || i == 208 || i == 209) duration = 83; // 2 counts
-        else if (i == 104 || i == 106) duration = 125; // 3 counts
-        else if (i == 110 || i == 196 || i == 199 || i == 204 || 207) duration = 167; // 4 counts
-        maxSize = sizeof(part4);
-        current = part4;
+//        duration = tenorDur[i];
+//        maxSize = sizeof(part4);
+//        current = part4;
       }
     }
   }
